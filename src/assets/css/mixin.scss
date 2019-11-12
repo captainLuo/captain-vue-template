@@ -1,0 +1,104 @@
+/* define mixin */
+// flex
+@mixin flex($flex: flex,$direction: row nowrap, $main: center, $align: center) {
+    display: $flex;
+    justify-content: $main;
+    align-items: $align;
+    flex-flow: $direction
+  }
+  // 单行省略
+  @mixin ellipsis{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  // 清除浮动
+  @mixin clearfix{
+    &:after{
+      display: block;
+      content: '';
+      clear: both;
+    }
+  }
+  // 定义border边框
+  @mixin border($border-direction: top, $border-width: 0.05rem, $border-style: solid, $border-color: $borderColor) {
+    @if ($border-direction == top) {
+      border-top: $border-width $border-style $border-color  
+    }
+    @if ($border-direction == bottom) {
+      border-bottom: $border-width $border-style $border-color  
+    }
+    @if ($border-direction == left) {
+      border-left: $border-width $border-style $border-color  
+    }
+    @if ($border-direction == right) {
+      border-right: $border-width $border-style $border-color  
+    }
+    @if ($border-direction == all) {
+      border: $border-width $border-style $border-color  
+    }
+  }
+  
+  // 向右箭头
+  @mixin arrowRight($arrowBorder: 2px, $arrowSize: 0.5rem, $arrowRight: 1rem, $color: $borderColor){
+    border: solid $arrowBorder $color;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    content: " ";
+    top: 50%;
+    right: $arrowRight;
+    position: absolute;
+    width: $arrowSize;
+    height: $arrowSize;
+    transform: translateY(-50%) rotate(45deg);
+  }
+  
+  /* define function */
+  // define function for transforming px to rem
+  @function torem($px) {
+    @return $px / 20px * 1rem;
+  }
+  
+  /* define color */
+  // define Global variable,such like color variable
+  $black: #000000;
+  $CodGray: #101010;
+  $dustyGray: #999999;
+  $lightGray: #eeeeee;
+  $white:#ffffff;
+  
+  
+  // define module variable for color variable
+  $bgColor: $lightGray;
+  $borderColor: $lightGray;
+  $baseFontColor: $CodGray;
+  
+  // ------------------------------------------------------Module------------------------------------------
+  /* secKill color Module */
+  $Rose: #E4007F;
+  $Flamingo: #F75929; //火烈鸟
+  $Champagne: #FADAD1; //香槟
+  $Alto: #DDDDDD;
+  $Lochmara: #0085D0;
+  $LinkWater : #D5EBF7;
+  $MineShaft: #3D3D3D;
+  // define secKill module variable for color variable
+  
+  // define secKill module function
+  @mixin fixedSize ($color:$white, $bgColor: $Flamingo) {
+    width: torem(80px);
+    height: torem(30px);
+    text-align: center;
+    color: $color;
+    background: $bgColor;
+    border-radius: torem(4px);
+  }
+  
+  @mixin pop-up-button ($color: $white, $bgColor: $Flamingo) {
+    width: torem(230px);
+    height: torem(43px);
+    text-align: center;
+    color: $color;
+    background: $bgColor;
+    border-radius: torem(4px);
+  }
